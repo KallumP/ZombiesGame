@@ -1,1 +1,7 @@
 setup game so that it starts from the menu
+
+make it so that the game has a level object that contains the player, zombies and spawns
+
+implement player slowdown by timsing -0.1 with the player speed to get the accelaration to slow down by (x and y are independent)
+
+constrain to 60fps

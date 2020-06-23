@@ -21,8 +21,8 @@ public:
 		
 		Clear(olc::DARK_BLUE);
 
-		game.Tick();
-		game.Draw();
+		game.Tick(this);
+		game.Draw(this);
 
 		return true;
 	}
@@ -34,8 +34,11 @@ private:
 };
 
 int main() {
+
 	PixelGameEngine engine;
+
 	if (engine.Construct(256, 240, 4, 4))
 		engine.Start();
+
 	return 0;
 }

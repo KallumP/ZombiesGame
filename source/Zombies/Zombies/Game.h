@@ -1,4 +1,5 @@
 #pragma once
+#include "olcPixelGameEngine.h"
 
 #include <vector>
 #include <iostream>
@@ -13,9 +14,10 @@ public:
 
 	Game();
 
-	void Inputs();
-	void Tick();
-	void Draw();
+	
+	void Tick(olc::PixelGameEngine*);
+	
+	void Draw(olc::PixelGameEngine*);
 
 	
 
@@ -27,11 +29,20 @@ private:
 
 	void SpawnPlayer();
 
-	std::vector<SpawnPoint> zombieSpawns;
+	void Inputs(olc::PixelGameEngine*);
+	void MovePlayer();
+
+	std::vector<SpawnPoint> zombieSpawnPoints;
 	std::vector<Zombie> zombies;
 
-	SpawnPoint playerSpawn;
+	SpawnPoint playerSpawnPoint;
 	Player* player;
 
+
+	//inputs
+	bool WPressed;
+	bool APressed;
+	bool SPressed;
+	bool DPressed;
 };
 
