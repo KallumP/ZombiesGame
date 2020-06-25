@@ -1,0 +1,4 @@
+speed= distance * x
+
+speed / distance= x
+

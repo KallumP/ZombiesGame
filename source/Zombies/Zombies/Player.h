@@ -14,6 +14,7 @@ public:
 	void Move(Vector*, float);
 	void Draw(olc::PixelGameEngine*);
 
+	Vector GetPosition();
 	void SetX(int);
 	void SetY(int);
 

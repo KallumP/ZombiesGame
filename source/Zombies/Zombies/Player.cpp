@@ -68,14 +68,17 @@ void Player::Draw(olc::PixelGameEngine* pge) {
 
 //properties
 
+Vector Player::GetPosition() {
+	return position;
+}
+
 void Player::SetX(int _x) {
 	position.SetX(_x);
 }
-
-
 void Player::SetY(int _y) {
 	position.SetY(_y);
 }
+
 
 int Player::GetMoveSpeed() {
 	return moveSpeed;
