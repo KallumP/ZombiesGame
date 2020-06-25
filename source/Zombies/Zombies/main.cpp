@@ -32,9 +32,10 @@ public:
 
 			game.Tick(this, fElapsedTime);
 			game.Draw(this);
-
-			return true;
 		}
+
+
+		return true;
 	}
 
 private:

@@ -43,10 +43,10 @@ void Player::Move(Vector* toMove, float timeElapsed) {
 /// </summary>
 void Player::Decelarate() {
 
-	float slowdown = 0.005;
+	float slowdown = 0.3;
 
 	//checks if the x axis had any accelaration and had velocity
-	if (accelaration.GetX() == 0 && velocity.GetX() != 0) 
+	if (accelaration.GetX() == 0 && velocity.GetX() != 0)
 		accelaration.SetX(velocity.GetX() * -slowdown);
 
 	//checks if the y axis had any accelaration and had velocity

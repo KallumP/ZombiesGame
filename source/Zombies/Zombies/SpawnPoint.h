@@ -5,7 +5,9 @@ class SpawnPoint {
 public:
 
 	SpawnPoint();
-	SpawnPoint(int, int, int);
+	SpawnPoint(int, int, int, int);
+
+	bool CheckToSpawn(float);
 
 	void SetX(int);
 	int GetX();
@@ -22,5 +24,11 @@ private:
 	int x;
 	int y;
 	int spawnRadius;
+
+
+	//in milliseconds
+	int spawnRate;
+	float timeTillNextSpawn;
+
 };
 

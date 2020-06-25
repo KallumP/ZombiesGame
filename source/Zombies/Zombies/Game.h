@@ -28,9 +28,12 @@ private:
 	void SetupDebugLevel();
 
 	void SpawnPlayer();
+	void SpawnZombies(float);
+
 
 	void Inputs(olc::PixelGameEngine*);
 	void MovePlayer(float);
+	void MoveZombies(float);
 
 	std::vector<SpawnPoint> zombieSpawnPoints;
 	std::vector<Zombie> zombies;
@@ -38,6 +41,7 @@ private:
 	SpawnPoint playerSpawnPoint;
 	Player* player;
 
+	int round;
 
 	//inputs
 	bool WPressed;

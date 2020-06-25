@@ -15,6 +15,8 @@ Game::Game() {
 
 	SetupDebugLevel();
 	SpawnPlayer();
+
+	round = 1;
 }
 
 /// <summary>
@@ -22,9 +24,12 @@ Game::Game() {
 /// </summary>
 /// <param name="">Pointer to the pixel game engine</param>
 void Game::Tick(olc::PixelGameEngine* pge, float timeElapsed) {
-	
+
 	Inputs(pge);
 	MovePlayer(timeElapsed);
+
+	SpawnZombies(timeElapsed);
+	MoveZombies(timeElapsed);
 }
 
 /// <summary>
@@ -68,10 +73,11 @@ void Game::SetupLevel(std::string levelFilePath) {
 void Game::SetupDebugLevel() {
 
 	//adds in one zombie spawn point
-	zombieSpawnPoints.push_back(SpawnPoint(200, 200, 10));
+	zombieSpawnPoints.push_back(SpawnPoint(200, 200, 10, 3));
+	zombieSpawnPoints.push_back(SpawnPoint(20, 200, 10, 3));
 
 	//sets the player spawn position
-	playerSpawnPoint = SpawnPoint(20, 20, 10);
+	playerSpawnPoint = SpawnPoint(20, 20, 10, 10);
 
 }
 
@@ -104,6 +110,22 @@ void Game::MovePlayer(float timeElapsed) {
 
 	player->Move(toMove, timeElapsed);
 
-
 	delete(toMove);
+}
+
+
+void Game::SpawnZombies(float timeElapsed) {
+
+	for (int i = zombieSpawnPoints.size() - 1; i >= 0; i--)
+
+		if (zombieSpawnPoints[i].CheckToSpawn(timeElapsed))
+
+			zombies.push_back(Zombie(zombieSpawnPoints[i].GetX(), zombieSpawnPoints[i].GetY(), round));
+}
+
+void Game::MoveZombies(float timeElapsed) {
+
+	for (int i = zombies.size() - 1; i >= 0; i--)
+
+		zombies[i].Tick(timeElapsed, player);
 }
