@@ -21,10 +21,10 @@ Game::Game() {
 /// Keeps track of time
 /// </summary>
 /// <param name="">Pointer to the pixel game engine</param>
-void Game::Tick(olc::PixelGameEngine* pge) {
-
+void Game::Tick(olc::PixelGameEngine* pge, float timeElapsed) {
+	
 	Inputs(pge);
-	MovePlayer();
+	MovePlayer(timeElapsed);
 }
 
 /// <summary>
@@ -88,7 +88,7 @@ void Game::SpawnPlayer() {
 /// <summary>
 /// Moves the player
 /// </summary>
-void Game::MovePlayer() {
+void Game::MovePlayer(float timeElapsed) {
 
 	Vector* toMove = new Vector();
 
@@ -102,7 +102,7 @@ void Game::MovePlayer() {
 	if (DPressed)
 		toMove->SetX(toMove->GetX() + 1);
 
-	player->Move(toMove);
+	player->Move(toMove, timeElapsed);
 
 
 	delete(toMove);

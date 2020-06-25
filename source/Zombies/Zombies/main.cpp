@@ -18,19 +18,34 @@ public:
 	}
 
 	bool OnUserUpdate(float fElapsedTime) override {
-		
-		Clear(olc::DARK_BLUE);
 
-		game.Tick(this);
-		game.Draw(this);
 
-		return true;
+		//keeps track of how much time has passed
+		timeSinceLastFrame += fElapsedTime;
+
+		if (timeSinceLastFrame > targetFrameTime) {
+
+			timeSinceLastFrame -= targetFrameTime;
+			fElapsedTime = targetFrameTime;
+
+			Clear(olc::DARK_BLUE);
+
+			game.Tick(this, fElapsedTime);
+			game.Draw(this);
+
+			return true;
+		}
 	}
 
 private:
 
 	Game game;
 
+	float frameRate = 60;
+
+	float targetFrameTime = 1 / frameRate;
+
+	float timeSinceLastFrame;
 };
 
 int main() {

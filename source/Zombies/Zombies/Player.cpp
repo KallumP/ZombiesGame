@@ -16,23 +16,24 @@ Player::Player(int _x, int _y) {
 	SetX(_x);
 	SetY(_y);
 
-	moveSpeed = 1;
-	maxSpeed = 3;
+	moveSpeed = 5;
+	maxSpeed = 100;
 	size = 10;
 }
 
-void Player::Move(Vector* toMove) {
+void Player::Move(Vector* toMove, float timeElapsed) {
+
+	//normalizes the input to the players movement speed
+	toMove->Multiply(moveSpeed * timeElapsed);
 
 	//sets the accelaration of the player
 	accelaration = *toMove;
-
-	accelaration.Multiply(moveSpeed);
 
 	Decelarate();
 
 	velocity.Add(&accelaration);
 
-	velocity.Constrain(-maxSpeed, maxSpeed);
+	velocity.Constrain(-maxSpeed * timeElapsed, maxSpeed * timeElapsed);
 
 	position.Add(&velocity);
 }
@@ -42,7 +43,7 @@ void Player::Move(Vector* toMove) {
 /// </summary>
 void Player::Decelarate() {
 
-	float slowdown = 0.9;
+	float slowdown = 0.005;
 
 	//checks if the x axis had any accelaration and had velocity
 	if (accelaration.GetX() == 0 && velocity.GetX() != 0) 

@@ -15,7 +15,7 @@ public:
 	Game();
 
 	
-	void Tick(olc::PixelGameEngine*);
+	void Tick(olc::PixelGameEngine*, float);
 	
 	void Draw(olc::PixelGameEngine*);
 
@@ -30,7 +30,7 @@ private:
 	void SpawnPlayer();
 
 	void Inputs(olc::PixelGameEngine*);
-	void MovePlayer();
+	void MovePlayer(float);
 
 	std::vector<SpawnPoint> zombieSpawnPoints;
 	std::vector<Zombie> zombies;

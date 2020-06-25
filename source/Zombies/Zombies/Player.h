@@ -11,7 +11,7 @@ public:
 	Player();
 	Player(int, int);
 
-	void Move(Vector*);
+	void Move(Vector*, float);
 	void Draw(olc::PixelGameEngine*);
 
 	void SetX(int);
@@ -29,6 +29,8 @@ private:
 	Vector accelaration;
 
 	int size;
+
+	//per second
 	int moveSpeed;
 	int maxSpeed;
 };
